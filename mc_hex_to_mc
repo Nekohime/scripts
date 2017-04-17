@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Windows plebs be like, "but muh GUI INTERFACE!"
+#This script is designed to receive piped input.
+
+# Here's the mouse colour script outputting to it.
+# ./mouse_colour.sh | ./mc_hex_to_mc.sh
+
+read mahinput
+echo "ibase=16; "$mahinput | bc

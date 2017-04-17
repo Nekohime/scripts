@@ -1,0 +1,15 @@
+#!/usr/bin/env bash 
+#Colour picker
+# use argument -c to copy to clipboard.
+
+eval $(xdotool getmouselocation --shell)
+IMAGE=`import -window root -depth 8 -crop 1x1+$X+$Y txt:-`
+COLOUR=`echo $IMAGE | grep -om1 '#\w\+'`
+COLOUR=`echo $COLOUR | sed 's/#//g'`
+if [ "$1" = "-c" ]; then
+	echo -n $COLOUR | xclip -i -selection CLIPBOARD
+	echo $COLOUR
+else
+	echo $COLOUR
+fi
+

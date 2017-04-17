@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'  
+#Use argument -c to copy to clipboard.
+
+IP=$(curl -s ipecho.net/plain)
+
+if [ "$1" = "-c" ]; then
+	echo -n $IP | xclip -i -selection CLIPBOARD
+	echo $IP
+else
+	echo $IP
+fi
+#xclip -i -selection CLIPBOARD

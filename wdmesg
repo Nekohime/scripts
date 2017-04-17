@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Watches (man watch) dmesg every 0.1 seconds and shows only the $1 last lines.
+#Defaults to 20 if $1 is not provided
+
+tail_lines=$1
+if [ -z "$tail_lines" ]
+then
+	tail_lines=20
+fi
+watch -n 0.1 "dmesg | tail -$tail_lines"
+

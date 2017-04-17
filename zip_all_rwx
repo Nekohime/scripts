@@ -1,0 +1,5 @@
+#This is the original script from which "zip_all_individually" is based on.
+#Also, previous version lacked the extension name in the for loop statement, which made ALL files in directory zipped individually,
+#Instead of just what was asked.
+
+for i in *.rwx; do zip `basename $i .rwx`.zip $i; done

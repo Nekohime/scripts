@@ -1,4 +1,4 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 #Colour picker
 # use argument -c to copy to clipboard.
 

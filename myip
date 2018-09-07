@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
-#curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'  
+#Gets your public IP address from a website, displays it to you.
 #Use argument -c to copy to clipboard.
 
-IP=$(curl -s ipecho.net/plain)
-
-if [ "$1" = "-c" ]; then
-	echo -n $IP | xclip -i -selection CLIPBOARD
-	echo $IP
-else
-	echo $IP
-fi
-#xclip -i -selection CLIPBOARD
+IP=$(curl -s https://api.ipify.org/)
+[ "$1" = "-c" ] && echo -n $IP | xclip -i -selection clipboard
+echo $IP

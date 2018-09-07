@@ -10,3 +10,8 @@ gpg -d [directory].tgz.gpg | tar -xzf -
 tar -czf - [directory] | gpg -c -o [directory].tgz.gpg
 gpg -d [directory].tgz.gpg | tar -xzf -
 
+#Find Files Containing a Text Pattern
+find . -iname "*.txt" -exec grep -l "hello" {} +
+
+#Put in /etc/environment to fix games minimizing on unfocus
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0

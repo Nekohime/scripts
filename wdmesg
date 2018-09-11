@@ -8,4 +8,3 @@ then
 	tail_lines=20
 fi
 watch -n 0.1 "dmesg | tail -$tail_lines"
-

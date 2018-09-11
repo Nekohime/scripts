@@ -6,4 +6,4 @@
 # ./mouse_colour.sh | ./mc_hex_to_mc.sh
 
 read mahinput
-echo "ibase=16; "$mahinput | bc
+echo "ibase=16; ""$mahinput" | bc

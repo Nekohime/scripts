@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Prettifies JSON Files (Shortcut script)
-cat $1 | python -m json.tool
 
+python -m json.tool "$1"

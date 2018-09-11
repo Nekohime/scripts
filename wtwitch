@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-livestreamer twitch.tv/$1 source --player-http
+
+livestreamer twitch.tv/"$1" source --player-http

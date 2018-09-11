@@ -2,8 +2,8 @@
 #Colour picker
 # use argument -c to copy to clipboard.
 
-eval $(xdotool getmouselocation --shell)
-COLOUR=`import -window root -depth 8 -crop 1x1+$X+$Y txt:- | grep -om1 '#\w\+' | sed 's/#//g'`
+eval "$(xdotool getmouselocation --shell)"
+COLOUR=$(import -window root -depth 8 -crop 1x1+"$X"+"$Y" txt:- | grep -om1 '#\w\+' | sed 's/#//g')
 
-[ "$1" = "-c" ] && echo -n $COLOUR | xclip -i -selection clipboard
-echo $COLOUR
+[ "$1" = "-c" ] && echo -n "$COLOUR" | xclip -i -selection clipboard
+echo "$COLOUR"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+address=$1
+bl=$(curl -s https://blockchain.info/q/addressbalance/"$address"?confirmations=6)
+
+echo "$bl"

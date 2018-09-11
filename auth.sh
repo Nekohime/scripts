@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-oathtool --totp -b <authmastercodehere>
+
+$masterCode="Yeah"
+oathtool --totp -b "$masterCode"

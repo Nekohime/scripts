@@ -6,5 +6,4 @@
 #Folder needs to exist (mkdir -p?)
 
 filename=$HOME/Documents/Screenshots/$(date '+%Y%m%d-%H%M%S').png
-spectacle -nrbo $filename ; xclip -selection clipboard -t $(file -b --mime-type $filename) < $filename
-
+spectacle -nrbo "$filename" ; xclip -selection clipboard -t "$(file -b --mime-type "$filename")" < "$filename"

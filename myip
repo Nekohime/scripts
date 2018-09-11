@@ -3,5 +3,5 @@
 #Use argument -c to copy to clipboard.
 
 IP=$(curl -s https://api.ipify.org/)
-[ "$1" = "-c" ] && echo -n $IP | xclip -i -selection clipboard
-echo $IP
+[ "$1" = "-c" ] && echo -n "$IP" | xclip -i -selection clipboard
+echo "$IP"

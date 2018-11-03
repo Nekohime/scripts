@@ -4,6 +4,7 @@
 #Copies it to clipboard once taken.
 #Needs Spectacle and xclip installed
 #Folder needs to exist (mkdir -p?)
+mkdir -p "$HOME/Documents/Screenshots/"
 
 filename=$HOME/Documents/Screenshots/$(date '+%Y%m%d-%H%M%S').png
 spectacle -nrbo "$filename" ; xclip -selection clipboard -t "$(file -b --mime-type "$filename")" < "$filename"

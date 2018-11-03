@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Made by Nekohime (Nekohime.net) (https://github.com/Nekohime/)
-# Released under CC 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/)
+# Released under CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/)
 # Yes, it is public domain. Do what you want with it.
 
 # Downloads the RuneScape Hiscores for Player $1 (or provided default)

@@ -4,7 +4,8 @@
 #Doing "zip_all_individually rwx" will zip beep.rwx into beep.zip, then beep1.rwx into beep1.zip
 #Defaults to rwx extension, if no argument provided
 
-if [ -z $1 ];
+if [ -z "$1" ];
+then
   for i in *.rwx; do zip "$(basename "$i .rwx").zip" "$i"; done
 else
   for i in *.$1; do zip "$(basename "$i .$1").zip" "$i"; done

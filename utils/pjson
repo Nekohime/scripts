@@ -2,4 +2,4 @@
 # Prettifies JSON Files (Shortcut script)
 
 #python -m json.tool "$1"
-cat $1 | jq .
+jq . "$1"

@@ -5,5 +5,5 @@
 # Here's the mouse colour script outputting to it.
 # ./mouse_colour.sh | ./mc_hex_to_mc.sh
 
-read mahinput
+read -r mahinput
 echo "ibase=16; ""$mahinput" | bc

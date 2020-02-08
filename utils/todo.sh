@@ -17,16 +17,16 @@ touch $TODO_FILE
 
 # Didn't use a switch case to make the code more readable for myself.
 # Sorry, not sorry :)
-if [ "$1" == "list" ] || [ "$1" == "l" ]; then
+if [ "$1" == "list" ] || [ "$1" == "l" ]; then #todo list
 	grep -rn '' $TODO_FILE --color=always
-elif [ "$1" == "search" ] || [ "$1" == "s" ]; then
+elif [ "$1" == "search" ] || [ "$1" == "s" ]; then #todo search "string"
 	grep -rni "$2" $TODO_FILE --color=always
-elif [ "$1" == "add" ] || [ "$1" == "a" ]; then
+elif [ "$1" == "add" ] || [ "$1" == "a" ]; then #todo add "string"
 	echo "$2" >> $TODO_FILE
-elif [ "$1" == "remove" ] || [ "$1" == "r" ]; then
+elif [ "$1" == "remove" ] || [ "$1" == "r" ]; then #todo remove <line number>
 	sed -i "$2"d $TODO_FILE #grep -rn '' $TODO_FILE --color=always
-elif [ "$1" == "edit" ] || [ "$1" == "e" ]; then
-	echo "NYI!"
+elif [ "$1" == "edit" ] || [ "$1" == "e" ]; then #todo edit <line number> "string"
+	sed -i "${2}s/.*/$3/" $TODO_FILE
 else
 	grep -rn '' $TODO_FILE --color=always # Default to list
 fi

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Usage: ytdl_ogg URL
+youtube-dl -x --audio-format vorbis "$1"

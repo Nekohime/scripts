@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Released under public domain. Made my Nekohime (https://nekohime.net)
+# Released under public domain. Made by Nekohime (https://nekohime.net)
 # I hope it will be useful!
 # Fun fact: Written in about an hour
 
 # You should put some exports in your .bashrc, but this will handle defaults as well.
 #export TODO_FILE=~/todo/todo.txt
 
-TODO_FOLDER=~/todo/
+TODO_FOLDER=~/todo
 TODO_FILE=$TODO_FOLDER/list.txt
 mkdir -p $TODO_FOLDER
-
+touch $TODO_FILE
 # Didn't use a switch case to make the code more readable for myself.
 # Sorry, not sorry :)
 

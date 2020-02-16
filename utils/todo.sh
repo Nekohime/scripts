@@ -39,9 +39,17 @@ elif [ "$1" == "search" ] || [ "$1" == "s" ]; then #todo search "string"
 elif [ "$1" == "add" ] || [ "$1" == "a" ]; then #todo add "string"
 	echo "$2" >> $TODO_FILE
 elif [ "$1" == "remove" ] || [ "$1" == "r" ]; then #todo remove <line number>
-	sed -i "$2"d $TODO_FILE #grep -rn '' $TODO_FILE --color=always
+	if [ "$2" -gt 0 ]; then
+		sed -i "$2"d $TODO_FILE #grep -rn '' $TODO_FILE --color=always
+	fi
 elif [ "$1" == "edit" ] || [ "$1" == "e" ]; then #todo edit <line number> "string"
 	sed -i "${2}s/.*/$3/" $TODO_FILE
+elif [ "$1" == "file" ] || [ "$1" == "f" ]; then
+  echo $TODO_FILE
+elif [ "$1" == "backup" ] || [ "$1" == "b" ]; then
+  echo "NYI"
+elif [ "$1" == "help" ] || [ "$1" == "h" ]; then
+  echo "NYI"
 else
 	displayFile
 	grep -rn '' $TODO_FILE --color=always # Default to list

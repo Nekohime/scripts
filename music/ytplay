@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Usage: ytplay URL
+# Broken
+youtube-dl -x --audio-format vorbis "$1" --exec "audacious -E {} && rm {}" &

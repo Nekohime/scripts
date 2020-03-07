@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+HEIGHT=15
+WIDTH=60
+CHOICE_HEIGHT=4
+BACKTITLE="Retrostation Launcher v0.1"
+TITLE="Nintendo 64 Games"
+MENU="Choose a Game you'd like to play:"
+
+OPTIONS=(1 "The Legend of Zelda: Ocarina of Time"
+         2 "The Legend of Zelda: Majora's Mask"
+         3 "ZOOT Randomizer"
+         4 "OOT Beta Quest")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+case $CHOICE in
+        1)
+            echo "Opening [The Legend of Zelda: Ocarina of Time]"
+            ./run.sh
+            ;;
+        2)
+            echo "You chose [The Legend of Zelda: Majora's Mask]"
+            ./zmm.sh
+            ;;
+        3)
+            echo "You chose [ZOOT Randomizer]"
+            ./zootrandom.sh
+            ;;
+        4)
+            echo "You chose [OOT Beta Quest]"
+            ./bq.sh
+            ;;
+esac

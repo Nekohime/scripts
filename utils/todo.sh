@@ -9,6 +9,8 @@
 # Could also use like this: TODO_FILE=~/.todo/list.txt todo <commands>
 # Could also make a new alias that uses a different todo file :)
 
+#$(</dev/stdin) #(Ignore)
+
 if [ -z "$TODO_FILE" ]; then
  #echo "TODO_FILE is Empty... using default"
  TODO_FILE=~/.todo/list.txt
@@ -49,7 +51,13 @@ elif [ "$1" == "file" ] || [ "$1" == "f" ]; then
 elif [ "$1" == "backup" ] || [ "$1" == "b" ]; then
   echo "NYI"
 elif [ "$1" == "help" ] || [ "$1" == "h" ]; then
-  echo "NYI"
+  echo "List of commands:
+  todo add \"Todo thing\"
+  todo add \"Todo thing\"
+  todo remove 1
+  todo edit 1 \"Todo thing, #edited\"
+  todo search \"#edited\"
+  todo list"
 else
 	displayFile
 	grep -rn '' $TODO_FILE --color=always # Default to list

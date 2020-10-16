@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Released under public domain. Made by Nekohime (https://nekohime.net)
 # I hope it will be useful!
 # Fun fact: Written in about an hour
@@ -22,35 +23,36 @@ touch $TODO_FILE
 # Didn't use a switch case to make the code more readable for myself.
 # Sorry, not sorry :)
 
-function displayFile() {
-	if [ $(stat -c %s $TODO_FILE) -gt 0 ]; then
+displayFile() {
+	if [ "$(stat -c %s $TODO_FILE)" -gt 0 ]; then
 		echo $TODO_FILE
 	fi
 }
 
-if [ "$1" == "list" ] || [ "$1" == "l" ]; then #todo list
-	if [ -n "$(grep -rn '' $TODO_FILE --color=always)" ]; then
+if [ "$1" = "list" ] || [ "$1" = "l" ]; then #todo list
+	if ! grep -rn '' $TODO_FILE --color=always; then
     displayFile
 		grep -rn '' $TODO_FILE --color=always
 	fi
-elif [ "$1" == "search" ] || [ "$1" == "s" ]; then #todo search "string"
-  if [ -n "$(grep -rni "$2" $TODO_FILE --color=always)" ]; then
+elif [ "$1" = "search" ] || [ "$1" = "s" ]; then #todo search "string"
+  if ! grep -rni "$2" $TODO_FILE --color=always; then
     displayFile
 		grep -rni "$2" $TODO_FILE --color=always
 	fi
-elif [ "$1" == "add" ] || [ "$1" == "a" ]; then #todo add "string"
-	echo "$2" >> $TODO_FILE
-elif [ "$1" == "remove" ] || [ "$1" == "r" ]; then #todo remove <line number>
+elif [ "$1" = "add" ] || [ "$1" = "a" ]; then #todo add "string"
+	#echo "$@" | sed 's/[^ ]* //' >> $TODO_FILE
+	echo "$@" | sed 's/[^ ]* //' >> $TODO_FILE
+elif [ "$1" = "remove" ] || [ "$1" = "r" ]; then #todo remove <line number>
 	if [ "$2" -gt 0 ]; then
 		sed -i "$2"d $TODO_FILE #grep -rn '' $TODO_FILE --color=always
 	fi
-elif [ "$1" == "edit" ] || [ "$1" == "e" ]; then #todo edit <line number> "string"
+elif [ "$1" = "edit" ] || [ "$1" = "e" ]; then #todo edit <line number> "string"
 	sed -i "${2}s/.*/$3/" $TODO_FILE
-elif [ "$1" == "file" ] || [ "$1" == "f" ]; then
+elif [ "$1" = "file" ] || [ "$1" = "f" ]; then
   echo $TODO_FILE
-elif [ "$1" == "backup" ] || [ "$1" == "b" ]; then
+elif [ "$1" = "backup" ] || [ "$1" = "b" ]; then
   echo "NYI"
-elif [ "$1" == "help" ] || [ "$1" == "h" ]; then
+elif [ "$1" = "help" ] || [ "$1" = "h" ]; then
   echo "List of commands:
   todo add \"Todo thing\"
   todo add \"Todo thing\"
@@ -62,3 +64,11 @@ else
 	displayFile
 	grep -rn '' $TODO_FILE --color=always # Default to list
 fi
+
+#all_args=("$@")
+#rest_args=("${all_args[@]:2}")
+#echo ${rest_args[@]}"
+#echo "${@:2}"
+#shift
+#echo $@ | sed 's/[^ ]* //'
+#echo $@

@@ -60,6 +60,8 @@ elif [ "$1" = "help" ] || [ "$1" = "h" ]; then
   todo edit 1 \"Todo thing, #edited\"
   todo search \"#edited\"
   todo list"
+elif [ "$1" = "get" ] || [ "$1" = "g" ]; then
+  sed -n "$2,$2 p" $TODO_FILE
 else
 	displayFile
 	grep -rn '' $TODO_FILE --color=always # Default to list

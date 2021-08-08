@@ -10,5 +10,7 @@ sudo chown $USER:$USER inxi.log
 
 tar -cvf specs.tar.gz *.log
 
-rm *.log
+rm lspci.log
+rm lsusb.log
+rm inxi.log
 

@@ -1,0 +1,105 @@
+#!/usr/bin/env sh
+# Public Domain / CC0
+# Original written by Nekohime - Nekohime.net
+# Extra features were added by cr1901 - https://github.com/cr1901
+
+uuid=$(uuidgen -r)
+tmp_file="$(mktemp)"
+
+edit=0
+paste_clip=0
+keep_fn=0
+delete_file=""
+
+dest_file="$uuid.txt"
+
+domain="nekohime.net"
+base_url="https://$domain/paste"
+final_url="$base_url/$dest_file"
+base_dir="/var/www/nekohime.net/html/paste"
+
+while getopts ":hecd:k" x; do
+	case $x in
+		h)
+			echo "pb [-e] [-c] [-d ID] [-k] [file]"
+			echo "    -e open \$EDITOR to create file"
+			echo "    -c copy final URL to clipboard"
+			echo "    -d delete file with ID"
+			echo "    -k keep filename"
+			echo ""
+			echo "    -d overrides all options and ignores [file]"
+			echo "    -k overrides -e and requires [file]"
+			echo "    -e overrides and ignores reading from [file] or stdin"
+			exit
+			;;
+		e)
+			edit=1
+			;;
+		c)
+			paste_clip=1
+			;;
+		d)
+			delete_file="$OPTARG"
+			;;
+		k)
+			# Preserve input filename.
+			keep_fn=1
+			;;
+		*)
+			echo "Invalid flag detected."
+		;;
+	esac
+done
+shift $((OPTIND - 1))
+
+# Check for invalid conditions. If were are deleting a file, the script
+# will end before invalid conditions.
+if [ "$keep_fn" -ne "0" ] && [ -z "$delete_file" ]; then
+	if [ -n "$1" ]; then
+		# Editing does not make sense if we're keeping the filename.
+		edit=0
+		dest_file=$(basename "$1")
+		final_url="$base_url/$dest_file"
+	else
+		echo "-s/-k options require a filename"
+		exit 1
+	fi
+fi
+
+# delete mode
+if [ -n "$delete_file" ]; then
+	# shellcheck disable=SC2029
+	ssh "$domain" "rm $base_dir/$delete_file"
+	exit
+fi
+
+# paste mode
+if [ "$edit" -ne "0" ]; then
+	"$EDITOR" "$tmp_file"
+	file="$tmp_file"
+elif [ -n "$1" ]; then
+	file="$1"
+else
+	cat > "$tmp_file"
+	file="$tmp_file"
+fi
+
+# Don't modify files that exist on your hard disk already.
+if [ -z "$1" ]; then
+	chmod 664 "$file"
+fi
+
+rsync -lptgoDH "$file" "$domain:$base_dir/$dest_file"
+
+# get URL and cleanup
+if [ "$paste_clip" -ne "0" ]; then
+	if printf '%s' "$(uname -s)" | grep -q "MINGW64_NT"; then
+		echo "$final_url" > /dev/clipboard
+	else
+		echo "$final_url" | xclip -sel clip
+		echo "$final_url" | xclip
+	fi
+fi
+
+echo "$final_url"
+rm "$tmp_file"

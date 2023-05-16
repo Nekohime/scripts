@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Made by Nekohime (Nekohime.net) (https://github.com/Nekohime/)
 # Released under CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/)
-# Yes, it is public domain. Do what you want with it.
 
 # Downloads the RuneScape Hiscores for Player $1 (or provided default)
-# If debugging the outputted JSON, try `$ python -m json.tool file.json`
 #set -euo pipefail # Debugging
+
+# TODO: JS Rewrite?
 
 playerName=${1:-Nekohime} # :)
 url="https://secure.runescape.com/m=hiscore/index_lite.ws?player=$playerName" # https://secure.runescape.com/m=hiscore/index_lite.ws?player=Nekohime

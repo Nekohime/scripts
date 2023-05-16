@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-#Gets your public IP address from a website, displays it to you.
-#Use argument -c to copy to clipboard.
-
-IP=$(curl -s https://api.ipify.org/)
-[ "$1" = "-c" ] && echo -n "$IP" | xclip -i -selection clipboard
-echo "$IP"

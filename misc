@@ -1,6 +1,3 @@
-alias farore='if [[ "$f" == "" ]]; then f=$(pwd); else cd $f; unset f; fi'
-
-
 #Use gpg-zip instead! :)
 
 tar -czf - [directory] | gpg -c --cipher-algo AES -o [directory].tgz.gpg

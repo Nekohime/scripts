@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Didn't want to use the program made by that one nazi
-
 echo 'Dec Hex    Dec Hex    Dec Hex  Dec Hex  Dec Hex  Dec Hex   Dec Hex   Dec Hex   '
 echo '  0 00 NUL  16 10 DLE  32 20    48 30 0  64 40 @  80 50 P   96 60 `  112 70 p '
 echo '  1 01 SOH  17 11 DC1  33 21 !  49 31 1  65 41 A  81 51 Q   97 61 a  113 71 q '

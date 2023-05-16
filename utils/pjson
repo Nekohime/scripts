@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Prettifies JSON Files (Shortcut script)
-
-#python -m json.tool "$1"
-jq . "$1"

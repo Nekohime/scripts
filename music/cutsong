@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Usage: Filename_1 Filename_2 Time_Start Time_End
-# Example: Mysong.ogg 00:00:03 00:03:49
-ffmpeg -i "$1" -ss "$2" -to "$3" -c copy ass.ogg #Last filename doesn't matter, we're mv'ing back to $1
-mv ass.ogg "$1"

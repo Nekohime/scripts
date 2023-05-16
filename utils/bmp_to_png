@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-for img in *.bmp; do
-    filename=${img%.*}
-    convert "$filename.bmp" "$filename.png"
-done

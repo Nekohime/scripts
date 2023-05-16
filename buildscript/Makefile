@@ -12,7 +12,8 @@ DEBUG_FLAG = -g
 CLANG_CFLAGS = $(DEBUG_FLAG) --std=c++17 -march=native -O3 -Wall -Wextra -Weverything -Wno-sign-compare -Wpedantic -Wformat=2 -Wno-deprecated -Wno-varargs -Wno-c++98-compat -Wno-old-style-cast -Wno-conversion -Wno-unused-parameter -Wno-padded -Wno-cast-align -Wno-reserved-id-macro -Wno-zero-as-null-pointer-constant -Wno-unused-macros -Wno-tautological-unsigned-zero-compare -Wno-format-nonliteral -Wnon-virtual-dtor
 GCC_CFLAGS = $(DEBUG_FLAG) --std=c++17 -oFast -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -Wno-sign-compare -Wno-type-limits -Wnon-virtual-dtor
 
-LIB = #-lmariadbclien
+#-lmariadbclient - if lmariadb doesn't work
+LIB = #-lmariadb
 
 LDFLAGS = -L/usr/lib/x86_64-linux-gnu/ -L.
 INCLUDES = -I/usr/include/ -I./

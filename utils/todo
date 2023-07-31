@@ -18,38 +18,34 @@ if [ -z "$TODO_FILE" ]; then
 fi
 
 mkdir -p "${TODO_FILE%/*}/"
-touch $TODO_FILE
-
-# Didn't use a switch case to make the code more readable for myself.
-# Sorry, not sorry :)
+touch "$TODO_FILE"
 
 displayFile() {
 	if [ "$(stat -c %s $TODO_FILE)" -gt 0 ]; then
-		echo $TODO_FILE
+		echo "$TODO_FILE"
 	fi
 }
 
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then #todo list
-	if ! grep -rn '' $TODO_FILE --color=always; then
+	if ! grep -rn '' "$TODO_FILE" --color=always; then
     displayFile
-		grep -rn '' $TODO_FILE --color=always
+		grep -rn '' "$TODO_FILE" --color=always
 	fi
 elif [ "$1" = "search" ] || [ "$1" = "s" ]; then #todo search "string"
-  if ! grep -rni "$2" $TODO_FILE --color=always; then
+  if ! grep -rni "$2" "$TODO_FILE" --color=always; then
     displayFile
-		grep -rni "$2" $TODO_FILE --color=always
+		grep -rni "$2" "$TODO_FILE" --color=always
 	fi
 elif [ "$1" = "add" ] || [ "$1" = "a" ]; then #todo add "string"
-	#echo "$@" | sed 's/[^ ]* //' >> $TODO_FILE
-	echo "$@" | sed 's/[^ ]* //' >> $TODO_FILE
+	echo "$@" | sed 's/[^ ]* //' >> "$TODO_FILE"
 elif [ "$1" = "remove" ] || [ "$1" = "r" ]; then #todo remove <line number>
 	if [ "$2" -gt 0 ]; then
-		sed -i "$2"d $TODO_FILE #grep -rn '' $TODO_FILE --color=always
+		sed -i "$2"d "$TODO_FILE" #grep -rn '' $TODO_FILE --color=always
 	fi
 elif [ "$1" = "edit" ] || [ "$1" = "e" ]; then #todo edit <line number> "string"
-	sed -i "${2}s/.*/$3/" $TODO_FILE
+	sed -i "${2}s/.*/$3/" "$TODO_FILE"
 elif [ "$1" = "file" ] || [ "$1" = "f" ]; then
-  echo $TODO_FILE
+  echo "$TODO_FILE"
 elif [ "$1" = "backup" ] || [ "$1" = "b" ]; then
   echo "NYI"
 elif [ "$1" = "help" ] || [ "$1" = "h" ]; then
@@ -61,10 +57,10 @@ elif [ "$1" = "help" ] || [ "$1" = "h" ]; then
   todo search \"#edited\"
   todo list"
 elif [ "$1" = "get" ] || [ "$1" = "g" ]; then
-  sed -n "$2,$2 p" $TODO_FILE
+  sed -n "$2,$2 p" "$TODO_FILE"
 else
 	displayFile
-	grep -rn '' $TODO_FILE --color=always # Default to list
+	grep -rn '' "$TODO_FILE" --color=always # Default to list
 fi
 
 #all_args=("$@")

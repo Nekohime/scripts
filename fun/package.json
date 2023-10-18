@@ -1,6 +1,12 @@
 {
+  "type": "module",
+  "main": "excuses.js",
+  "scripts": {
+    "lint": "eslint excuses.js"
+  },
   "devDependencies": {
+    "eslint": "^8.51.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-plugin-vue": "^9.17.0"
   }
 }

@@ -17,7 +17,6 @@ const y = [
 ];
 const excuses = [];
 function main(numOfExcuses) {
-
   for (let i = 1; i <= numOfExcuses; i++) {
     const pickApology = getRandomElement(apology);
     const pickX = getRandomElement(x);
@@ -47,4 +46,4 @@ function printExcuses() {
   }
 }
 
-main(10);
+main(25);

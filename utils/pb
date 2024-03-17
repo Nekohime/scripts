@@ -16,7 +16,7 @@ dest_file="$uuid.txt"
 domain="nekohime.net"
 base_url="https://$domain/paste"
 final_url="$base_url/$dest_file"
-base_dir="/var/www/nekohime.net/html/paste"
+base_dir="/var/www/html/paste"
 
 while getopts ":hecd:k" x; do
 	case $x in
@@ -96,8 +96,8 @@ if [ "$paste_clip" -ne "0" ]; then
 	if printf '%s' "$(uname -s)" | grep -q "MINGW64_NT"; then
 		echo "$final_url" > /dev/clipboard
 	else
-		echo "$final_url" | xclip -sel clip
-		echo "$final_url" | xclip
+		#echo "$final_url" | xclip -sel clip # TODO: handle X11 session
+		echo "$final_url" | wl-copy
 	fi
 fi
 
